@@ -42,6 +42,7 @@ animations = [ {
 [node name="Player" type="Area2D"]
 script = ExtResource( 2 )
 speed = 200.0
+fireDelay = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 4.76221 )
@@ -59,3 +60,6 @@ position = Vector2( -34.9228, -12.3024 )
 
 [node name="RightGun" type="Node2D" parent="FiringPositions"]
 position = Vector2( 33.3354, -12.3024 )
+
+[node name="FireDelayTimer" type="Timer" parent="."]
+one_shot = true

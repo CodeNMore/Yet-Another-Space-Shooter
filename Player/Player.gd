@@ -4,8 +4,10 @@ var plBullet := preload("res://Bullet/Bullet.tscn")
 
 onready var animatedSprite := $AnimatedSprite
 onready var firingPositions := $FiringPositions
+onready var fireDelayTimer := $FireDelayTimer
 
 export var speed: float = 100
+export var fireDelay: float = 0.1
 var vel := Vector2(0, 0)
 
 func _process(delta):
@@ -18,7 +20,8 @@ func _process(delta):
 		animatedSprite.play("Straight")
 		
 	# Check if shooting
-	if Input.is_action_pressed("shoot"):
+	if Input.is_action_pressed("shoot") and fireDelayTimer.is_stopped():
+		fireDelayTimer.start(fireDelay)
 		for child in firingPositions.get_children():
 			var bullet := plBullet.instance()
 			bullet.global_position = child.global_position
