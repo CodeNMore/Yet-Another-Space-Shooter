@@ -1,5 +1,7 @@
 extends Area2D
 
+var pMeteorEffect := preload("res://Meteor/MeteorEffect.tscn")
+
 export var minSpeed: float = 10
 export var maxSpeed: float = 20
 export var minRotationRate: float = -20
@@ -27,6 +29,10 @@ func _physics_process(delta):
 func damage(amount: int):
 	life -= amount
 	if life <= 0:
+		var effect := pMeteorEffect.instance()
+		effect.position = position
+		get_parent().add_child(effect)
+		
 		queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
