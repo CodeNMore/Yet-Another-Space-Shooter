@@ -17,6 +17,7 @@ var vel := Vector2(0, 0)
 
 func _ready():
 	shieldSprite.visible = false
+	Signals.emit_signal("on_player_life_changed", life)
 
 func _process(delta):
 	# Animate

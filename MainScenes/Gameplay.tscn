@@ -30,10 +30,10 @@ angle_random = 1.0
 scale_amount = 0.1
 scale_amount_random = 0.15
 
+[node name="HUD" parent="." instance=ExtResource( 5 )]
+
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 222.918, 190.882 )
 
 [node name="Meteor" parent="." instance=ExtResource( 4 )]
 position = Vector2( 296, 48 )
-
-[node name="HUD" parent="." instance=ExtResource( 5 )]
