@@ -24,6 +24,10 @@ config/name="Yet Another Space Shooter"
 run/main_scene="res://MainScenes/Gameplay.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Signals="*res://Autloads/Signals.gd"
+
 [display]
 
 window/size/width=450
