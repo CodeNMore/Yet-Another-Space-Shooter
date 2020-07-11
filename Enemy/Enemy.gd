@@ -25,11 +25,16 @@ func fire():
 		get_tree().current_scene.add_child(bullet)
 	
 func damage(amount: int):
+	if health <= 0:
+		return
+	
 	health -= amount
 	if health <= 0:
 		var effect := plEnemyExplosion.instance()
 		effect.global_position = global_position
 		get_tree().current_scene.add_child(effect)
+		
+		Signals.emit_signal("on_score_increment", 1)
 		
 		queue_free()
 

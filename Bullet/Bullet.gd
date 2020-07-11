@@ -16,5 +16,8 @@ func _on_Bullet_area_entered(area):
 		bulletEffect.position = position
 		get_parent().add_child(bulletEffect)
 		
+		var cam := get_tree().current_scene.find_node("Cam", true, false)
+		cam.shake(1)
+		
 		area.damage(1)
 		queue_free()

@@ -27,11 +27,16 @@ func _physics_process(delta):
 	position.y += speed * delta
 
 func damage(amount: int):
+	if life <= 0:
+		return
+	
 	life -= amount
 	if life <= 0:
 		var effect := pMeteorEffect.instance()
 		effect.position = position
 		get_parent().add_child(effect)
+		
+		Signals.emit_signal("on_score_increment", 2)
 		
 		queue_free()
 
