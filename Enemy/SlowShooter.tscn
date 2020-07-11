@@ -10,7 +10,7 @@ extents = Vector2( 36.104, 13.1419 )
 [node name="SlowShooter" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
 verticalSpeed = 65.0
-health = 40
+health = 30
 fireRate = 3.0
 
 [node name="Sprite" parent="." index="0"]

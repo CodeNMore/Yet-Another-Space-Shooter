@@ -18,10 +18,16 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
+}, {
+"base": "Enemy",
+"class": "SlowShooter",
+"language": "GDScript",
+"path": "res://Enemy/SlowShooter.gd"
 } ]
 _global_script_class_icons={
 "Enemy": "",
-"Player": ""
+"Player": "",
+"SlowShooter": ""
 }
 
 [application]

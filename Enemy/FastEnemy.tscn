@@ -6,7 +6,7 @@
 [node name="FastEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 verticalSpeed = 100.0
-health = 20
+health = 15
 rotationRate = 50
 
 [node name="Sprite" parent="." index="0"]
