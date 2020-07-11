@@ -3,8 +3,8 @@
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Textures/backgroundColor.png" type="Texture" id=2]
 [ext_resource path="res://Textures/starBig.png" type="Texture" id=3]
+[ext_resource path="res://Enemy/Spawner.gd" type="Script" id=4]
 [ext_resource path="res://HUD/HUD.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemy/BouncerEnemy.tscn" type="PackedScene" id=8]
 
 [node name="Gameplay" type="Node"]
 
@@ -38,5 +38,10 @@ scale_amount_random = 0.15
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 222.918, 190.882 )
 
-[node name="BouncerEnemy" parent="." instance=ExtResource( 8 )]
-position = Vector2( 137.948, 76.1093 )
+[node name="Spawner" type="Node2D" parent="."]
+position = Vector2( 224.76, -59.4605 )
+script = ExtResource( 4 )
+
+[node name="SpawnTimer" type="Timer" parent="Spawner"]
+one_shot = true
+[connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_SpawnTimer_timeout"]

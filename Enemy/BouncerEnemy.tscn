@@ -6,6 +6,5 @@
 [node name="BouncerEnemy" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 verticalSpeed = 60.0
-health = 30
 fireRate = 2.0
 horizontalSpeed = 80.0
