@@ -15,12 +15,12 @@ region = Rect2( 0, 0, 99, 77 )
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 198, 0, 99, 77 )
+region = Rect2( 99, 0, 99, 77 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 99, 0, 99, 77 )
+region = Rect2( 198, 0, 99, 77 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
@@ -31,12 +31,12 @@ animations = [ {
 }, {
 "frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "Right",
+"name": "Straight",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 4 ) ],
 "loop": true,
-"name": "Straight",
+"name": "Right",
 "speed": 5.0
 } ]
 
@@ -44,7 +44,6 @@ animations = [ {
 z_index = 100
 script = ExtResource( 2 )
 speed = 200.0
-fireDelay = 0.15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -73,4 +72,8 @@ one_shot = true
 [node name="Shield" type="Sprite" parent="."]
 scale = Vector2( 0.75, 0.75 )
 texture = ExtResource( 3 )
+
+[node name="RapidFireTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="timeout" from="InvincibilityTimer" to="." method="_on_InvincibilityTimer_timeout"]
+[connection signal="timeout" from="RapidFireTimer" to="." method="_on_RapidFireTimer_timeout"]

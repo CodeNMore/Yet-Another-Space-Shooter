@@ -8,12 +8,16 @@ onready var firingPositions := $FiringPositions
 onready var fireDelayTimer := $FireDelayTimer
 onready var invincibilityTimer := $InvincibilityTimer
 onready var shieldSprite := $Shield
+onready var rapidFireTimer := $RapidFireTimer
 
 export var speed: float = 100
-export var fireDelay: float = 0.1
 export var life: int = 3
 export var damageInvincibilityTime := 2.0
+export var normalFireDelay := 0.1
+export var rapidFireDelay := 0.08
+
 var vel := Vector2(0, 0)
+var fireDelay: float = normalFireDelay
 
 func _ready():
 	shieldSprite.visible = false
@@ -60,8 +64,7 @@ func damage(amount: int):
 	if !invincibilityTimer.is_stopped():
 		return
 	
-	invincibilityTimer.start(damageInvincibilityTime)
-	shieldSprite.visible = true
+	applyShield(damageInvincibilityTime)
 	
 	life -= amount
 	Signals.emit_signal("on_player_life_changed", life)
@@ -71,6 +74,20 @@ func damage(amount: int):
 	
 	if life <= 0:
 		queue_free()
+		
+func applyRapidFire(time: float):
+	if !rapidFireTimer.is_stopped():
+		rapidFireTimer.start(time + rapidFireTimer.time_left)
+		return
+	rapidFireTimer.start(time)
+	fireDelay = rapidFireDelay
+		
+func applyShield(time: float):
+	invincibilityTimer.start(time)
+	shieldSprite.visible = true
 
 func _on_InvincibilityTimer_timeout():
 	shieldSprite.visible = false
+
+func _on_RapidFireTimer_timeout():
+	fireDelay = normalFireDelay
