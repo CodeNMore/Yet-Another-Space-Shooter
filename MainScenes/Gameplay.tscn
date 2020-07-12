@@ -42,8 +42,13 @@ position = Vector2( 222.918, 190.882 )
 [node name="Spawner" type="Node2D" parent="."]
 position = Vector2( 224.76, -59.4605 )
 script = ExtResource( 4 )
+minPowerupSpawnTime = 15.0
+maxPowerupSpawnTime = 25.0
 
 [node name="SpawnTimer" type="Timer" parent="Spawner"]
+one_shot = true
+
+[node name="PowerupTimer" type="Timer" parent="Spawner"]
 one_shot = true
 
 [node name="Cam" type="Camera2D" parent="."]
@@ -51,3 +56,4 @@ anchor_mode = 0
 current = true
 script = ExtResource( 6 )
 [connection signal="timeout" from="Spawner/SpawnTimer" to="Spawner" method="_on_SpawnTimer_timeout"]
+[connection signal="timeout" from="Spawner/PowerupTimer" to="Spawner" method="_on_PowerupTimer_timeout"]

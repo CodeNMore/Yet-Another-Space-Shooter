@@ -9,13 +9,22 @@ var preloadedEnemies := [
 ]
 var plMeteor := preload("res://Meteor/Meteor.tscn")
 
+var preloadedPowerups := [
+	preload("res://Powerups/ShieldPowerup.tscn"),
+	preload("res://Powerups/RapidFirePowerup.tscn")
+]
+
 onready var spawnTimer := $SpawnTimer
+onready var powerupTimer := $PowerupTimer
 
 var nextSpawnTime := 5.0
+export var minPowerupSpawnTime := 3.0
+export var maxPowerupSpawnTime := 5.0
 
 func _ready():
 	randomize()
 	spawnTimer.start(nextSpawnTime)
+	powerupTimer.start(rand_range(minPowerupSpawnTime, maxPowerupSpawnTime))
 
 func _on_SpawnTimer_timeout():
 	# Spawn an enemy
@@ -37,3 +46,14 @@ func _on_SpawnTimer_timeout():
 	if nextSpawnTime < MIN_SPAWN_TIME:
 		nextSpawnTime = MIN_SPAWN_TIME
 	spawnTimer.start(nextSpawnTime)
+
+func _on_PowerupTimer_timeout():
+	var viewRect := get_viewport_rect()
+	var xPos := rand_range(viewRect.position.x, viewRect.end.x)
+	
+	var powerupPreload = preloadedPowerups[randi() % preloadedPowerups.size()]
+	var powerup: Powerup = powerupPreload.instance()
+	powerup.position = Vector2(xPos, position.y)
+	get_tree().current_scene.add_child(powerup)
+	
+	powerupTimer.start(rand_range(minPowerupSpawnTime, maxPowerupSpawnTime))
