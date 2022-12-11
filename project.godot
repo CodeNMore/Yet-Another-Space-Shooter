@@ -80,6 +80,10 @@ shoot={
  ]
 }
 
+[mono]
+
+project/assembly_name="Yet Another Space Shooter"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"

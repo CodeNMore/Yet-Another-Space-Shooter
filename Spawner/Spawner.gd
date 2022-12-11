@@ -9,6 +9,7 @@ var preloadedEnemies := [
 ]
 var preloadedPowerups := [
 	preload("res://Powerups/ShieldPowerup.tscn"),
+	preload("res://Powerups/RapidFirePowerup.tscn"),
 ]
 var plMeteor := preload("res://Meteor/Meteor.tscn")
 

@@ -7,13 +7,17 @@ onready var animatedSprite := $AnimatedSprite
 onready var firingPositions := $FiringPositions
 onready var fireDelayTimer := $FireDelayTimer
 onready var invincibilityTimer := $InvincibilityTimer
+onready var rapidFireTimer := $RapidFireTimer
 onready var shieldSprite := $Shield
 
 export var speed: float = 100
-export var fireDelay: float = 0.1
 export var life: int = 3
 export var damageInvincibilityTime := 2.0
 var vel := Vector2(0, 0)
+
+export var normalFireDelay: float = 0.12
+export var rapidFireDelay: float = 0.08
+var fireDelay: float = normalFireDelay
 
 func _ready():
 	shieldSprite.visible = false
@@ -72,8 +76,15 @@ func damage(amount: int):
 		queue_free()
 		
 func applyShield(time: float):
-	invincibilityTimer.start(time)
+	invincibilityTimer.start(time + invincibilityTimer.time_left)
 	shieldSprite.visible = true
+
+func applyRapidFire(time: float):
+	fireDelay = rapidFireDelay
+	rapidFireTimer.start(time + rapidFireTimer.time_left)
 
 func _on_InvincibilityTimer_timeout():
 	shieldSprite.visible = false
+
+func _on_RapidFireTimer_timeout() -> void:
+	fireDelay = normalFireDelay
