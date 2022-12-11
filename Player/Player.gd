@@ -60,8 +60,7 @@ func damage(amount: int):
 	if !invincibilityTimer.is_stopped():
 		return
 	
-	invincibilityTimer.start(damageInvincibilityTime)
-	shieldSprite.visible = true
+	applyShield(damageInvincibilityTime)
 	
 	life -= amount
 	Signals.emit_signal("on_player_life_changed", life)
@@ -71,6 +70,10 @@ func damage(amount: int):
 	
 	if life <= 0:
 		queue_free()
+		
+func applyShield(time: float):
+	invincibilityTimer.start(time)
+	shieldSprite.visible = true
 
 func _on_InvincibilityTimer_timeout():
 	shieldSprite.visible = false

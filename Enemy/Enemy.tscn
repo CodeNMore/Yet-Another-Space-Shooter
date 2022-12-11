@@ -6,9 +6,7 @@
 [sub_resource type="CircleShape2D" id=1]
 radius = 34.9152
 
-[node name="Enemy" type="Area2D" groups=[
-"damageable",
-]]
+[node name="Enemy" type="Area2D" groups=["damageable"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -22,6 +20,7 @@ position = Vector2( -0.595272, 0.59528 )
 scale = Vector2( 4.90898, 4.78992 )
 
 [node name="FiringPositions" type="Node2D" parent="."]
+
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Enemy_area_exited"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
